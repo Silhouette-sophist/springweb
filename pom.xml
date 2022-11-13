@@ -5,9 +5,31 @@
   <artifactId>springweb</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
+
   <name>springweb Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
   <dependencies>
+    <!-- 原生Servlet API可实现最原生的JavaWeb功能 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--使用springcontext，即基本运行环境，有ioc和api和SpEl等内容-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.3.23</version>
+    </dependency>
+    <!--使用springweb依赖，来进行javaweb开发-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.3.23</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -15,6 +37,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <finalName>springweb</finalName>
   </build>

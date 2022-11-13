@@ -27,13 +27,32 @@
     SpringWeb example
   </description>
 
+  <!--配置原生的JavaWeb Servlet-->
   <servlet>
     <servlet-name>Hello</servlet-name>
     <servlet-class>com.springweb.controller.HelloController</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
     <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    在使用springMVC时，默认的DispatcherServlet在初始化时候会加载Dispatcher-servlet.xml文件，而该文件一般位于WEB-INF下。
+    而如果我们将配置写在applicationContext.xml中，就需要在他加载的时候指定需要加载的文件和路径。
+  -->
+  <!--配置Springmvc的Servlet-->
+  <servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>

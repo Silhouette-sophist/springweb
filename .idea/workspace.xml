@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e25a1eb-6dcd-441b-a531-4fccc0211cb6" name="Changes" comment="init repo">
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imgs/img-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imgs/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imgs/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springweb/controller/HelloController.java" afterDir="false" />
+    <list default="true" id="6e25a1eb-6dcd-441b-a531-4fccc0211cb6" name="Changes" comment="分别添加JavaWeb和SpringWeb的实现用例">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springweb/controller/SpringController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springweb/controller/scan/AnnotationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/springmvc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
@@ -22,8 +21,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="XML Properties File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -115,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668317222160</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="分别添加JavaWeb和SpringWeb的实现用例">
+      <created>1668320927945</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668320927945</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +138,28 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="init repo" />
+    <MESSAGE value="分别添加JavaWeb和SpringWeb的实现用例" />
+    <option name="LAST_COMMIT_MESSAGE" value="分别添加JavaWeb和SpringWeb的实现用例" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/springweb/controller/SpringController.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/springweb/controller/HelloController.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/springweb/controller/scan/AnnotationController.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

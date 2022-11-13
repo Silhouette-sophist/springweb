@@ -81,11 +81,12 @@ public class HelloController extends HttpServlet {
 配置Filter等，中文乱码等等。
 
 
-# SpringWeb
+# SpringWeb/SpringMVC
 虽然可以通过最基本的JavaWeb方式写应用，但是一般会使用SpringWeb框架进行JavaWeb开发，因此会选择集成下面依赖。
+**注意**，使用Spring会有如下特征，要配置IOC容器的配置内容！！！
 ## 依赖
 ```markdown
-    <!--使用springcontext，即基本运行环境，有ioc和api和SpEl等内容-->
+     <!--使用springcontext，即基本运行环境，有ioc和api和SpEl等内容-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
@@ -97,217 +98,76 @@ public class HelloController extends HttpServlet {
       <artifactId>spring-web</artifactId>
       <version>5.3.23</version>
     </dependency>
+    <!--SpringMVC依赖-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.3.23</version>
+    </dependency>
 ```
+
+## 组件
+- DispatchServlet
+- Filter
+注意：SpringMVC中使用DispatcherServlet来统一托管的请求，这一个中心的Servlet会将各种url再映射到Controller中。
 
 ## 配置
-其实参考tomcat中example-webapp即可知道。配置Filter、Servlet、Listener等内容。
+### wex.xml配置
+- 配置DispatcherServlet
+- 配置SpringMVC配置文件路径
+```xml
+    <!--
+    在使用springMVC时，默认的DispatcherServlet在初始化时候会加载Dispatcher-servlet.xml文件，而该文件一般位于WEB-INF下。
+    而如果我们将配置写在applicationContext.xml中，就需要在他加载的时候指定需要加载的文件和路径。
+      -->
+    <!--配置Springmvc的Servlet-->
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+    </servlet-mapping>
+```
+
+### springmvc容器配置
+- 配置beans
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-  version="4.0"
-  metadata-complete="true">
-
-    <description>
-      Servlet and JSP Examples.
-    </description>
-    <display-name>Servlet and JSP Examples</display-name>
-
-    <request-character-encoding>UTF-8</request-character-encoding>
-
-    <!-- 配置过滤器，有删减 -->
-    <filter>
-        <filter-name>Timing Filter</filter-name>
-        <filter-class>filters.ExampleFilter</filter-class>
-        <init-param>
-            <param-name>attribute</param-name>
-            <param-value>filters.ExampleFilter</param-value>
-        </init-param>
-    </filter>
-    
-    <!-- Enable header security filter for all requests -->
-    <filter-mapping>
-        <filter-name>HTTP header security filter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <!-- 配置监听器，有删减 -->
-    <listener>
-        <listener-class>listeners.ContextListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>listeners.SessionListener</listener-class>
-    </listener>
-    <!-- Define listeners required by examples -->
-    <listener>
-        <listener-class>async.AsyncStockContextListener</listener-class>
-    </listener>
-
-    <!-- 配置Servlet，有删减 -->
-    <servlet>
-      <servlet-name>ServletToJsp</servlet-name>
-      <servlet-class>ServletToJsp</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CompressionFilterTestServlet</servlet-name>
-        <servlet-class>compressionFilters.CompressionFilterTestServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>HelloWorldExample</servlet-name>
-        <servlet-class>HelloWorldExample</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>CompressionFilterTestServlet</servlet-name>
-        <url-pattern>/CompressionTest</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HelloWorldExample</servlet-name>
-        <url-pattern>/servlets/servlet/HelloWorldExample</url-pattern>
-    </servlet-mapping>
-    
-
-    <jsp-config>
-        <taglib>
-            <taglib-uri>
-               http://tomcat.apache.org/debug-taglib
-            </taglib-uri>
-            <taglib-location>
-               /WEB-INF/jsp/debug-taglib.tld
-            </taglib-location>
-        </taglib>
-
-        <taglib>
-            <taglib-uri>
-               http://tomcat.apache.org/example-taglib
-            </taglib-uri>
-            <taglib-location>
-               /WEB-INF/jsp/example-taglib.tld
-            </taglib-location>
-        </taglib>
-
-        <taglib>
-            <taglib-uri>
-               http://tomcat.apache.org/jsp2-example-taglib
-            </taglib-uri>
-            <taglib-location>
-               /WEB-INF/jsp2/jsp2-example-taglib.tld
-            </taglib-location>
-        </taglib>
-
-        <jsp-property-group>
-            <description>
-                Special property group for JSP Configuration JSP example.
-            </description>
-            <display-name>JSPConfiguration</display-name>
-            <url-pattern>/jsp/jsp2/misc/config.jsp</url-pattern>
-            <el-ignored>true</el-ignored>
-            <page-encoding>ISO-8859-1</page-encoding>
-            <scripting-invalid>true</scripting-invalid>
-            <include-prelude>/jsp/jsp2/misc/prelude.jspf</include-prelude>
-            <include-coda>/jsp/jsp2/misc/coda.jspf</include-coda>
-        </jsp-property-group>
-    </jsp-config>
-
-    <security-constraint>
-      <display-name>Example Security Constraint - part 1</display-name>
-      <web-resource-collection>
-         <web-resource-name>Protected Area - Allow methods</web-resource-name>
-         <!-- Define the context-relative URL(s) to be protected -->
-         <url-pattern>/jsp/security/protected/*</url-pattern>
-         <!-- If you list http methods, only those methods are protected so -->
-         <!-- the constraint below ensures all other methods are denied     -->
-         <http-method>DELETE</http-method>
-         <http-method>GET</http-method>
-         <http-method>POST</http-method>
-         <http-method>PUT</http-method>
-      </web-resource-collection>
-      <auth-constraint>
-         <!-- Anyone with one of the listed roles may access this area -->
-         <role-name>tomcat</role-name>
-         <role-name>role1</role-name>
-      </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-      <display-name>Example Security Constraint - part 2</display-name>
-      <web-resource-collection>
-         <web-resource-name>Protected Area - Deny methods</web-resource-name>
-         <!-- Define the context-relative URL(s) to be protected -->
-         <url-pattern>/jsp/security/protected/*</url-pattern>
-         <http-method-omission>DELETE</http-method-omission>
-         <http-method-omission>GET</http-method-omission>
-         <http-method-omission>POST</http-method-omission>
-         <http-method-omission>PUT</http-method-omission>
-      </web-resource-collection>
-      <!-- An empty auth constraint denies access -->
-      <auth-constraint />
-    </security-constraint>
-
-    <!-- Default login configuration uses form-based authentication -->
-    <login-config>
-      <auth-method>FORM</auth-method>
-      <realm-name>Example Form-Based Authentication Area</realm-name>
-      <form-login-config>
-        <form-login-page>/jsp/security/protected/login.jsp</form-login-page>
-        <form-error-page>/jsp/security/protected/error.jsp</form-error-page>
-      </form-login-config>
-    </login-config>
-
-    <!-- Security roles referenced by this web application -->
-    <security-role>
-      <role-name>role1</role-name>
-    </security-role>
-    <security-role>
-      <role-name>tomcat</role-name>
-    </security-role>
-
-    <!-- Environment entry examples -->
-    <!--env-entry>
-      <env-entry-description>
-         The maximum number of tax exemptions allowed to be set.
-      </env-entry-description>
-      <env-entry-name>maxExemptions</env-entry-name>
-      <env-entry-type>java.lang.Integer</env-entry-type>
-      <env-entry-value>15</env-entry-value>
-    </env-entry-->
-    <env-entry>
-      <env-entry-name>minExemptions</env-entry-name>
-      <env-entry-type>java.lang.Integer</env-entry-type>
-      <env-entry-value>1</env-entry-value>
-    </env-entry>
-
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.xhtml</welcome-file>
-        <welcome-file>index.htm</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-
-    <!-- Websocket examples -->
-    <listener>
-        <listener-class>websocket.drawboard.DrawboardContextListener</listener-class>
-    </listener>
-
-</web-app>
+    <bean name="springController" class="com.springweb.controller.SpringController" />
+</beans>
 ```
+- 注解扫描beans
+```markdown
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <!--手动再ioc容器配置中配置controller bean-->
+    <bean name="springController" class="com.springweb.controller.SpringController" />
+
+    <!--自动扫描包实现bean的加载-->
+    <!--注意导入context命名空间，xmlns:context="http://www.springframework.org/schema/context"和http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd"-->
+    <context:component-scan base-package="com.springweb.controller.scan" />
+</beans>
+```
+
+### 
 
 # SSM框架整合
 

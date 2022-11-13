@@ -167,7 +167,39 @@ public class HelloController extends HttpServlet {
 </beans>
 ```
 
-### 
+### 分析总结
+- SpringMVC开始引入IOC容器了，所以使用这一模式需要有配置文件，也就是后面的applicationContext.properties等ioc容器配置文件
+- bean配置方式从最开始的手动配置过渡到注解扫描配置！！！
+- 配置文件设置可以通过再web.xmp中设置DispatcherServlet时加上启动参数指定ioc配置文件位置，也可以直接实现相应接口替代springmvc.xml配置文件的设置
+- web服务器如tomcat需要配置web.xml，而使用的springmvc要求设置ioc容器配置，即springmvc/applicationContext内容，其中配置了各种bean
+- 区别于自动化加载springmvc配置文件（实际上时web.xml配置DispatcherServlet时出发ioc配置加载），可以手动加载额外的配置文件，即退化不适用springmvc方式，只是使用spring-core\spring-beans中的方法，完成ioc容器的创建
+- 其他业务再整合到spring中，都是会从ioc容器配置中关联到外部配置文件，如mybatis等
+
+```java
+public class FirstTest {
+
+    @Test
+    public void testIoc(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springmvc.xml");
+        Object springController = applicationContext.getBean("springController");
+        System.out.println(springController);
+    }
+}
+```
+**注意**：上面的测试只是加载了新的ioc容器，而不是使用工程现有的ioc容器（详细未分析）
+```java
+@SpringBootTest
+class NettyDemoApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
+```
+**注意**：上面这个才是启动工程现有的ioc容器
+
+![img.png](imgs/img-4.png)
 
 # SSM框架整合
 

@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e25a1eb-6dcd-441b-a531-4fccc0211cb6" name="Changes" comment="tomcat服务器的web.xml配置中配置DispatcherServlet并关联springmvc配置springmvc.xml，并在其中再配置beans或者扫描beans等初始化ioc容器逻辑" />
+    <list default="true" id="6e25a1eb-6dcd-441b-a531-4fccc0211cb6" name="Changes" comment="额外数据">
+      <change afterPath="$PROJECT_DIR$/imgs/img-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/springweb/FirstTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,24 +58,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\SourceCode\springweb\imgs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.FirstTest.testIoc">
+    <configuration name="FirstTest.testIoc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springweb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springweb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springweb" />
+      <option name="MAIN_CLASS_NAME" value="com.springweb.FirstTest" />
+      <option name="METHOD_NAME" value="testIoc" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LocalTomcat9" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
@@ -90,6 +112,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FirstTest.testIoc" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -121,7 +148,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668324817046</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="编译参数添加到gitignore">
+      <created>1668325041628</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668325041628</updated>
+    </task>
+    <task id="LOCAL-00005" summary="额外数据">
+      <created>1668325059415</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668325059415</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,7 +180,9 @@
     <MESSAGE value="init repo" />
     <MESSAGE value="分别添加JavaWeb和SpringWeb的实现用例" />
     <MESSAGE value="tomcat服务器的web.xml配置中配置DispatcherServlet并关联springmvc配置springmvc.xml，并在其中再配置beans或者扫描beans等初始化ioc容器逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="tomcat服务器的web.xml配置中配置DispatcherServlet并关联springmvc配置springmvc.xml，并在其中再配置beans或者扫描beans等初始化ioc容器逻辑" />
+    <MESSAGE value="编译参数添加到gitignore" />
+    <MESSAGE value="额外数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="额外数据" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
